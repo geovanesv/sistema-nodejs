@@ -18,7 +18,7 @@ module.exports = class VendaController {
     }
 
     const produtos = req.body.produtos || []
-
+    const quantidadeVenda = 0
     let valor_total = 0
 
     for (let i = 0; i < produtos.length; i++) {
@@ -39,6 +39,7 @@ module.exports = class VendaController {
           const produto_id = produtos[i]
           await venda_criada.addProduto(produto_id)
         }
+        quantidadeVenda += 1
         res.redirect('/vendas/listarVendas')
       })
       .catch((error) => {
